@@ -1,11 +1,9 @@
-# OS files
-.DS_Store
-
 # IDE files
 .idea/
 
+# Build output
+dist/
+AniLink-Skipper.zip
+
 # Node modules
 node_modules/
-
-# TypeScript map files
-*.js.map

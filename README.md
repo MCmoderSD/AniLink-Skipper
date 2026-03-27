@@ -1,4 +1,4 @@
-# [AniLink Skipper](https://chromewebstore.google.com/)
+# [AniLink Skipper](https://chromewebstore.google.com/anilink-skipper/cohhlekeocnodlohgbfhkmhpjjpccpkb)
 
 *A Chrome extension to skip the [ouo.io](https://www.ouo.io) redirect on [anime-loads.org](https://www.anime-loads.org) by injecting a cookie.*
 
@@ -20,7 +20,7 @@ By injecting a cookie directly into your browser, it allows you to go straight t
 
 ### From Chrome Web Store
 
-1. Navigate to the [AniLink Skipper page on the Chrome Web Store](https://chromewebstore.google.com/detail/).
+1. Navigate to the [AniLink Skipper page on the Chrome Web Store](https://chromewebstore.google.com/detail/anilink-skipper/cohhlekeocnodlohgbfhkmhpjjpccpkb).
 2. Click **Add to Chrome**, then **Add extension**.
 3. Pin the extension to your toolbar by clicking the puzzle-piece icon and selecting **AniLink Skipper**.
 
