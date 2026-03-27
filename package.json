@@ -1,0 +1,16 @@
+{
+  "name": "anilink-skipper",
+  "version": "1.0.0",
+  "description": "A Chrome extension to skip the ouo.io redirect on anime-loads.org by injecting a cookie.",
+  "main": "dist/background.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rm -rf dist/*.js.map"
+  },
+
+  "devDependencies": {
+    "@types/chrome": "^0.1.38",
+    "typescript": "^5.9.3"
+  }
+}
