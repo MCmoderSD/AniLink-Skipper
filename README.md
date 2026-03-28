@@ -24,6 +24,15 @@ By injecting a cookie directly into your browser, it allows you to go straight t
 2. Click **Add to Chrome**, then **Add extension**.
 3. Pin the extension to your toolbar by clicking the puzzle-piece icon and selecting **AniLink Skipper**.
 
+### From Release (GitHub)
+1. Go to the Tab Scraper [releases page](https://github.com/MCmoderSD/AniLink-Skipper/releases/latest).
+2. Download the latest `AniLink-Skipper.zip` file.
+3. Extract the contents to a folder on your computer.
+4. Load into Chrome:
+   * Open `chrome://extensions/` in your browser.
+   * Enable **Developer mode** (toggle in top-right).
+   * Click **Load unpacked**, then select the extracted **AniLink-Skipper** folder.
+
 ### From Source (Development)
 
 1. Clone this repository:
@@ -32,16 +41,19 @@ By injecting a cookie directly into your browser, it allows you to go straight t
    git clone https://github.com/MCmoderSD/AniLink-Skipper.git
    cd AniLink-Skipper
    ```
+
 2. Install dependencies:
 
    ```bash
    npm install
    ```
+
 3. Build the extension:
 
    ```bash
    npm run build
    ```
+
 4. Load into Chrome:
 
     * Open `chrome://extensions/` in your browser.
