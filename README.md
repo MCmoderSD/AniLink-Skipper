@@ -1,4 +1,4 @@
-# [AniLink Skipper](https://chromewebstore.google.com/anilink-skipper/cohhlekeocnodlohgbfhkmhpjjpccpkb)
+# [AniLink Skipper](https://chromewebstore.google.com/detail/anilink-skipper/cohhlekeocnodlohgbfhkmhpjjpccpkb)
 
 *A Chrome extension to skip the [ouo.io](https://www.ouo.io) redirect on [anime-loads.org](https://www.anime-loads.org) by injecting a cookie.*
 
