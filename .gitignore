@@ -3,7 +3,6 @@
 
 # Build output
 dist/
-AniLink-Skipper.zip
 
 # Node modules
 node_modules/
