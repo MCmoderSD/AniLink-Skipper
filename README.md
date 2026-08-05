@@ -25,7 +25,7 @@ By injecting a cookie directly into your browser, it allows you to go straight t
 3. Pin the extension to your toolbar by clicking the puzzle-piece icon and selecting **AniLink Skipper**.
 
 ### From Release (GitHub)
-1. Go to the Tab Scraper [releases page](https://github.com/MCmoderSD/AniLink-Skipper/releases/latest).
+1. Go to the AniLink Skipper [releases page](https://github.com/MCmoderSD/AniLink-Skipper/releases/latest).
 2. Download the latest `AniLink-Skipper.zip` file.
 3. Extract the contents to a folder on your computer.
 4. Load into Chrome:
@@ -70,9 +70,10 @@ By injecting a cookie directly into your browser, it allows you to go straight t
 
 ## Permissions
 
-* `tabs`: Read URLs from open tabs.
-* `cookies`: Inject cookies to bypass redirects.
-* `scripting`: Show alerts if the extension is used on unsupported sites.
+* `activeTab`: Access the tab you click the extension icon on, to read its URL and reload it.
+* `cookies`: Inject the bypass cookie.
+* `scripting`: Show an alert if the extension is used on an unsupported site.
+* `host_permissions` (`*://*.anime-loads.org/*`): Required so the cookie can actually be set on anime-loads.org and its subdomains — the extension has no access to any other site.
 
 
 ## Privacy & Security
@@ -86,3 +87,8 @@ You control all activity locally.
 
 Contributions, bug reports, and suggestions are welcome! 
 Feel free to open [issues](https://github.com/MCmoderSD/AniLink-Skipper/issues) or submit pull requests.
+
+
+## License
+
+AniLink Skipper is licensed under the [BSD 3-Clause License](LICENSE).

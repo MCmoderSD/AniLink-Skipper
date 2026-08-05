@@ -1,40 +1,43 @@
-import {getDomainFromUrl, getProtocolFromUrl, showAlert} from "./util.js";
+import {describeError, isAllowedHost, parseTabUrl, showAlert, type TabUrl} from "./util.js";
 
-import SetDetails = chrome.cookies.SetDetails;
-import Tab = chrome.tabs.Tab;
+const BASE_DOMAIN: string = "anime-loads.org";
 
-const cookieName: string = "modalads"
-const cookieValue: string = "done";
-const expirationDate: number = 400 * 24 * 60 * 60; // 400 days in seconds
+const COOKIE_NAME: string = "modalads";
+const COOKIE_VALUE: string = "done";
 
-const allowedDomains: string[] = [
-    "anime-loads.org"
-];
+const COOKIE_MAX_AGE_SECONDS: number = 34560000; // 400 * 24 * 60 * 60
 
-function isAllowedDomain(hostname: string): boolean {
-    return allowedDomains.includes(hostname);
-}
+async function injectCookie(tabId: number, tab: chrome.tabs.Tab): Promise<void> {
+    const url: TabUrl | null = parseTabUrl(tab.url);
 
-chrome.action.onClicked.addListener(async (tab: Tab): Promise<void> => {
-    if (!tab.url || !tab.id) return;
-
-    const protocol: string = getProtocolFromUrl(tab.url);
-    const domain: string = getDomainFromUrl(tab.url);
-
-    if (!isAllowedDomain(domain)) {
-        await showAlert("This extension only works on anime-loads.org");
+    if (url === null || !isAllowedHost(url.hostname, BASE_DOMAIN)) {
+        await showAlert(tabId, `AniLink Skipper only works on ${BASE_DOMAIN}.`);
         return;
     }
 
-    const cookie: SetDetails = {
-        url: protocol + domain,
-        name: cookieName,
-        value: cookieValue,
-        domain: domain,
-        path: "/",
-        expirationDate: Math.floor(Date.now() / 1000) + expirationDate
+    try {
+        await chrome.cookies.set({
+            url: url.origin,
+            name: COOKIE_NAME,
+            value: COOKIE_VALUE,
+            domain: BASE_DOMAIN,
+            path: "/",
+            secure: url.secure,
+            expirationDate: Math.floor(Date.now() / 1000) + COOKIE_MAX_AGE_SECONDS
+        });
+    } catch (error) {
+        await showAlert(tabId, `AniLink Skipper could not set the cookie: ${describeError(error)}`);
+        return;
     }
 
-    await chrome.cookies.set(cookie);
-    await chrome.tabs.reload(tab.id);
+    await chrome.tabs.reload(tabId);
+}
+
+chrome.action.onClicked.addListener((tab: chrome.tabs.Tab): void => {
+    const tabId: number | undefined = tab.id;
+    if (tabId === undefined || tabId === chrome.tabs.TAB_ID_NONE) return;
+
+    injectCookie(tabId, tab).catch((error: unknown): void => {
+        console.error("AniLink Skipper: unexpected failure", describeError(error));
+    });
 });

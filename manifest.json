@@ -2,10 +2,10 @@
   "manifest_version": 3,
   "name": "AniLink Skipper",
   "description": "A Chrome extension to skip the ouo.io redirect on anime-loads.org by injecting a cookie.",
-  "version": "1.0.1",
+  "version": "1.1.0",
 
-  "permissions": ["tabs", "cookies", "scripting"],
-  "host_permissions": ["https://anime-loads.org/*"],
+  "permissions": ["activeTab", "cookies", "scripting"],
+  "host_permissions": ["*://*.anime-loads.org/*"],
 
   "background": {
     "service_worker": "dist/background.js",

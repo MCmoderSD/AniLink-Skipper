@@ -1,37 +1,46 @@
-import QueryInfo = chrome.tabs.QueryInfo;
-import Tab = chrome.tabs.Tab;
-
-const queryInfo: QueryInfo = {
-    active: true,
-    currentWindow: true
+export interface TabUrl {
+    readonly origin: string;
+    readonly hostname: string;
+    readonly secure: boolean;
 }
 
-function isInjectAble(tab: Tab): boolean {
-    if (!tab.url) return false;
-    return tab.url?.startsWith("http://") || tab.url?.startsWith("https://");
+export function parseTabUrl(url: string | undefined): TabUrl | null {
+    if (url === undefined) return null;
+
+    let parsed: URL;
+    try {
+        parsed = new URL(url);
+    } catch {
+        return null;
+    }
+
+    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") return null;
+
+    return {
+        origin: parsed.origin,
+        hostname: parsed.hostname,
+        secure: parsed.protocol === "https:"
+    };
 }
 
-export async function showAlert(message: string): Promise<void> {
-
-    // Get Active Tab
-    const [tab] = await chrome.tabs.query(queryInfo);
-    if (!isInjectAble(tab)) return
-
-    // Inject Alert Script
-    await chrome.scripting.executeScript({
-        target: { tabId: tab.id! },
-        func: (msg: string) => alert(msg),
-        args: [message]
-    });
+export function isAllowedHost(hostname: string, baseDomain: string): boolean {
+    return hostname === baseDomain || hostname.endsWith(`.${baseDomain}`);
 }
 
-export function getDomainFromUrl(url: string): string {
-    const hostname: string = new URL(url).hostname;
-    return hostname.startsWith("www.") ? hostname.substring(4) : hostname;
+export function describeError(error: unknown): string {
+    return error instanceof Error ? error.message : String(error);
 }
 
-export function getProtocolFromUrl(url: string): string {
-    if (url.startsWith("http://")) return "http://";
-    if (url.startsWith("https://")) return "https://";
-    return url;
+export async function showAlert(tabId: number, message: string): Promise<void> {
+    try {
+        await chrome.scripting.executeScript({
+            target: { tabId },
+            func: (text: string): void => {
+                window.alert(text);
+            },
+            args: [message]
+        });
+    } catch (error) {
+        console.warn("AniLink Skipper: could not display message", describeError(error));
+    }
 }
