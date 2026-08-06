@@ -25,7 +25,7 @@ By injecting a cookie directly into your browser, it allows you to go straight t
 3. Pin the extension to your toolbar by clicking the puzzle-piece icon and selecting **AniLink Skipper**.
 
 ### From Release (GitHub)
-1. Go to the AniLink Skipper [releases page](https://github.com/MCmoderSD/AniLink-Skipper/releases/latest).
+1. Go to the AniLink Skipper [releases page](https://www.GitHub.com/MCmoderSD/AniLink-Skipper/releases/latest).
 2. Download the latest `AniLink-Skipper.zip` file.
 3. Extract the contents to a folder on your computer.
 4. Load into Chrome:
@@ -86,7 +86,7 @@ You control all activity locally.
 ## Contributing
 
 Contributions, bug reports, and suggestions are welcome! 
-Feel free to open [issues](https://github.com/MCmoderSD/AniLink-Skipper/issues) or submit pull requests.
+Feel free to open [issues](https://www.GitHub.com/MCmoderSD/AniLink-Skipper/issues) or submit pull requests.
 
 
 ## License
